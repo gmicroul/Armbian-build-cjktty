@@ -21,7 +21,7 @@ on:
       set_kernel_localversion:
         description: "kernel_localversion"
         required: true
-        default: "-ak201314-compile"
+        default: "-gmicroul-compile"
 
 env:
   TZ: Asia/Shanghai
@@ -51,7 +51,7 @@ jobs:
       - name: Download source code
         id: down
         run: |
-          git clone --depth 1 https://gitlab.com/kschen202115/msm8953-6.7.git linux
+          git clone --depth 1 -b 6.7.5/main https://github.com/msm8953-mainline/linux.git linux
       - name: Patch kernel
         id: patch
         run: |
