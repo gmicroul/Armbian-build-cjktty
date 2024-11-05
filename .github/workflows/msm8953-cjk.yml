@@ -87,7 +87,7 @@ jobs:
           tar -czf /workdir/modules.tar.gz ./*
           cd ..
           echo "::set-output name=status::success"
-
+          ls -ltrh
 
       - name: Upload file
         uses: actions/upload-artifact@v3
