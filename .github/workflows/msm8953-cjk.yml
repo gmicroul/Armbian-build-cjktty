@@ -51,7 +51,7 @@ jobs:
       - name: Download source code
         id: down
         run: |
-          git clone --depth 1 -b 6.7.5/main https://github.com/i-tek/msm8953-mainline-linux.git linux
+          git clone --depth 1 -b 6.7.5/main https://github.com/arm64-builder/linux.git linux
       - name: Patch kernel
         id: patch
         run: |
