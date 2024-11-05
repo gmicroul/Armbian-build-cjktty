@@ -81,7 +81,7 @@ jobs:
           cd ..
           cp *.deb /workdir
           cp linux/arch/arm64/boot/Image.gz /workdir
-          tar -czf /workdir/msm8953_dtb.tar.gz linux/arch/arm64/boot/dts/qcom/*capricorn*.dtb
+          tar -czf /workdir/msm8953_dtb.tar.gz linux/arch/arm64/boot/dts/qcom/*mido*.dtb
           find ./ -type f \( ! -name "*.ko" -a ! -name "modules.*" \) -exec rm -f {} \;
           cd linux/
           tar -czf /workdir/modules.tar.gz ./*
