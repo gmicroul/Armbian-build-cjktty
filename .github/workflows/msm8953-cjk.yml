@@ -21,7 +21,7 @@ on:
       set_kernel_localversion:
         description: "kernel_localversion"
         required: true
-        default: "-gmicroul-compile"
+        default: "-calicocat-msm8953"
 
 env:
   TZ: Asia/Shanghai
