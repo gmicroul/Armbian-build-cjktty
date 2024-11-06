@@ -80,6 +80,22 @@ jobs:
           make deb-pkg -j$(nproc)
           cd ..
           cp *.deb /workdir
+          mkdir tmpboot
+          cp ./linux/arch/arm64/boot/dts/qcom/*mido*.dtb tmpboot/dtb
+          cp ./linux/arch/arm64/boot/Image.gz tmpboot/
+          cp ./test/boot/initrd.img* tmpboot/initrd.img
+          cat tmpboot/Image.gz tmpboot/dtb > tmpboot/kernel-dtb
+
+          mkbootimg --base 0x80000000 \
+                  --kernel_offset 0x00008000 \
+                  --ramdisk_offset 0x01000000 \
+                  --tags_offset 0x00000100 \
+                  --pagesize 2048 \
+                  --second_offset 0x00f00000 \
+                  --ramdisk ./tmpboot/initrd.img \
+                  --cmdline "console=tty0 root=UUID=cdca08a9-24f5-4cea-81f8-3848afe168c8 rw loglevel=3 splash"\
+                  --kernel ./tmpboot/kernel-dtb -o ./tmpboot/boot.img
+          cp ./tmpboot/boot.img /workdir       
           cp linux/arch/arm64/boot/Image.gz /workdir
           tar -czf /workdir/msm8953_dtb.tar.gz linux/arch/arm64/boot/dts/qcom/*mido*.dtb
           find ./ -type f \( ! -name "*.ko" -a ! -name "modules.*" \) -exec rm -f {} \;
