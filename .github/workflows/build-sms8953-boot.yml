@@ -97,7 +97,7 @@ jobs:
                   --ramdisk ./tmpboot/initrd.img \
                   --cmdline "console=tty0 root=UUID=5b88fe83-8c22-4602-8d9c-342f5795d0b9 rw loglevel=3 splash"\
                   --kernel ./tmpboot/kernel-dtb -o ./tmpboot/boot.img
-          cp ./tmpboot/boot.img /workdir       
+          cp tmpboot/boot.img /workdir       
           cp linux/arch/arm64/boot/Image.gz /workdir
           tar -czf /workdir/msm8953_dtb.tar.gz linux/arch/arm64/boot/dts/qcom/*mido*.dtb
           find ./ -type f \( ! -name "*.ko" -a ! -name "modules.*" \) -exec rm -f {} \;
