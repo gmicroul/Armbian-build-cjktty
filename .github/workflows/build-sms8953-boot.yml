@@ -84,7 +84,7 @@ jobs:
   
           cp ./linux/arch/arm64/boot/dts/qcom/*mido*.dtb tmpboot/dtb
           cp ./linux/arch/arm64/boot/Image.gz tmpboot/
-          sudo cp /boot/initrd.img* tmpboot/initrd.img
+          sudo cp /boot/initrd.img tmpboot/initrd.img
           sudo chmod 750 /tmpboot/initrd.img
           cat tmpboot/Image.gz tmpboot/dtb > tmpboot/kernel-dtb
 
