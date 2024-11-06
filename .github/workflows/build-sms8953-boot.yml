@@ -84,7 +84,7 @@ jobs:
           find / -name initrd.img*
           cp ./linux/arch/arm64/boot/dts/qcom/*mido*.dtb tmpboot/dtb
           cp ./linux/arch/arm64/boot/Image.gz tmpboot/
-          cp ./test/boot/initrd.img* tmpboot/initrd.img
+          cp /boot/initrd.img* tmpboot/initrd.img
           cat tmpboot/Image.gz tmpboot/dtb > tmpboot/kernel-dtb
 
           mkbootimg --base 0x80000000 \
