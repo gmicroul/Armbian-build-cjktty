@@ -1,5 +1,5 @@
 
-name: Build Linux_msm8953_cjk
+name: Build Linux_msm8953_cjk-boot
 on:
   repository_dispatch:
   workflow_dispatch:
@@ -81,10 +81,11 @@ jobs:
           cd ..
           cp *.deb /workdir
           mkdir tmpboot
-          find / -name initrd.img*
+  
           cp ./linux/arch/arm64/boot/dts/qcom/*mido*.dtb tmpboot/dtb
           cp ./linux/arch/arm64/boot/Image.gz tmpboot/
-          cp /boot/initrd.img* tmpboot/initrd.img
+          sudo cp /boot/initrd.img* tmpboot/initrd.img
+          sudo chmod 750 /tmpboot/initrd.img
           cat tmpboot/Image.gz tmpboot/dtb > tmpboot/kernel-dtb
 
           mkbootimg --base 0x80000000 \
