@@ -81,6 +81,7 @@ jobs:
           cd ..
           cp *.deb /workdir
           mkdir tmpboot
+          find / -name initrd.img*
           cp ./linux/arch/arm64/boot/dts/qcom/*mido*.dtb tmpboot/dtb
           cp ./linux/arch/arm64/boot/Image.gz tmpboot/
           cp ./test/boot/initrd.img* tmpboot/initrd.img
