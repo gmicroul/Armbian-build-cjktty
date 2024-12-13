@@ -41,13 +41,13 @@ jobs:
         
 
     - name: Configure kernel for SDM845
-      working-directory: ./kernel
+      working-directory: ./linux
       run: |
         make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- defconfig
         make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig
 
     - name: Compile kernel
-      working-directory: ./kernel
+      working-directory: ./linux
       run: make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs
 
     - name: Download cjktty source
