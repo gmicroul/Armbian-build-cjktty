@@ -1,0 +1,46 @@
+name: Build cjktty as APK for Alpine Linux ARM64
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # 使用 Ubuntu 作为构建环境
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up QEMU for ARM64
+      uses: docker/setup-qemu-action@v2
+      with:
+        platforms: linux/arm64
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Download source code
+      run: git clone https://github.com/your-source-repo-url.git cjktty-source
+
+    - name: Install dependencies
+      working-directory: ./cjktty-source
+      run: |
+        apk add --no-cache build-base alpine-sdk
+
+    - name: Compile cjktty
+      working-directory: ./cjktty-source
+      run: make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- all
+
+    - name: Create APK package
+      working-directory: ./cjktty-source
+      run: |
+        mkdir -p output
+        apk build --output output/cjktty.apk . # 假设你有一个APKBUILD文件在cjktty-source目录下
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: cjktty-apk
+        path: ./cjktty-source/output/cjktty.apk
