@@ -49,7 +49,7 @@ jobs:
       run: make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs
 
     - name: Download cjktty source
-      run: mkdir cjktty-source && cp ./cjktty-6.9.patch cjktty-source
+      run: mkdir cjktty-source && cp ./cjktty-6.9.patch cjktty-source && cp ./APKBUILD cjktty-source
 
     - name: Compile cjktty
       working-directory: ./cjktty-source
