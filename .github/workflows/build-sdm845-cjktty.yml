@@ -23,7 +23,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y \
+        sudo apt-get install -y aarch64-linux-gnu-gcc\
           build-essential \
           libncurses5-dev \
           libncursesw5-dev \
