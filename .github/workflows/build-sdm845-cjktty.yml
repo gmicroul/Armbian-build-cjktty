@@ -35,18 +35,19 @@ jobs:
     - name: Download and prepare kernel source
       run: |
         git clone -b sdm845/6.9-dev https://gitlab.com/sdm845-mainline/linux.git --depth=1
+        cd linux
         ls -ltr
         pwd
         
 
     - name: Configure kernel for SDM845
-      working-directory: ./linux/kernel
+      working-directory: ./kernel
       run: |
         make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- defconfig
         make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig
 
     - name: Compile kernel
-      working-directory: ./linux/kernel
+      working-directory: ./kernel
       run: make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs
 
     - name: Download cjktty source
