@@ -43,8 +43,8 @@ jobs:
     - name: Configure kernel for SDM845
       working-directory: ./linux
       run: |
-        make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- defconfig
-        make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig
+        make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- nconfig
+        #make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig
 
     - name: Compile kernel
       working-directory: ./linux
